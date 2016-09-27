@@ -72,11 +72,11 @@ class HeliumPanelController : NSWindowController {
     // MARK: Window lifecycle
     override func windowDidLoad() {
         panel.floatingPanel = true
-        
+
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HeliumPanelController.didBecomeActive), name: NSApplicationDidBecomeActiveNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HeliumPanelController.willResignActive), name: NSApplicationWillResignActiveNotification, object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(HeliumPanelController.didUpdateTitle(_:)), name: "HeliumUpdateTitle", object: nil)
-        
+
         setFloatOverFullScreenApps()
         if let alpha = NSUserDefaults.standardUserDefaults().objectForKey(UserSetting.OpacityPercentage.userDefaultsKey) {
             didUpdateAlpha(CGFloat(alpha as! Int))
@@ -185,7 +185,7 @@ class HeliumPanelController : NSWindowController {
     @IBAction private func openFilePress(sender: AnyObject) {
         didRequestFile()
     }
-    
+
     @IBAction private func floatOverFullScreenAppsToggled(sender: NSMenuItem) {
         sender.state = (sender.state == NSOnState) ? NSOffState : NSOnState
         NSUserDefaults.standardUserDefaults().setBool((sender.state == NSOffState), forKey: UserSetting.DisabledFullScreenFloat.userDefaultsKey)
@@ -196,18 +196,18 @@ class HeliumPanelController : NSWindowController {
 	@IBAction private func hideTitle(sender: NSMenuItem) {
 	   if sender.state == NSOnState {
 	       sender.state = NSOffState
-	       panel.styleMask = NSBorderlessWindowMask
+	       panel.styleMask = [NSBorderlessWindowMask, NSResizableWindowMask, NSMiniaturizableWindowMask]
 	   }
 	   else {
 	       sender.state = NSOnState
-	       panel.styleMask = 8345
+	       panel.styleMask = [NSTitledWindowMask, NSResizableWindowMask, NSMiniaturizableWindowMask]
 	   }
 	}
-    
+
     @IBAction func setHomePage(sender: AnyObject){
         didRequestChangeHomepage()
     }
-    
+
     //MARK: Actual functionality
     
     @objc private func didUpdateTitle(notification: NSNotification) {
@@ -240,7 +240,7 @@ class HeliumPanelController : NSWindowController {
         urlField.frame = NSRect(x: 0, y: 0, width: 300, height: 20)
         urlField.lineBreakMode = NSLineBreakMode.ByTruncatingHead
         urlField.usesSingleLineMode = true
-        
+
         alert.accessoryView = urlField
         alert.addButtonWithTitle("Load")
         alert.addButtonWithTitle("Cancel")
@@ -252,7 +252,7 @@ class HeliumPanelController : NSWindowController {
             }
         })
     }
-    
+
     func didRequestChangeHomepage(){
         let alert = NSAlert()
         alert.alertStyle = NSAlertStyle.InformationalAlertStyle

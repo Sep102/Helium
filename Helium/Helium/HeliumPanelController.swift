@@ -233,7 +233,7 @@ class HeliumPanelController : NSWindowController {
     
     private func didRequestLocation() {
         let alert = NSAlert()
-        alert.alertStyle = NSAlertStyle.InformationalAlertStyle
+        alert.alertStyle = NSAlertStyle.Informational
         alert.messageText = "Enter Destination URL"
         
         let urlField = NSTextField()
@@ -255,7 +255,7 @@ class HeliumPanelController : NSWindowController {
 
     func didRequestChangeHomepage(){
         let alert = NSAlert()
-        alert.alertStyle = NSAlertStyle.InformationalAlertStyle
+        alert.alertStyle = NSAlertStyle.Informational
         alert.messageText = "Enter new Home Page URL"
         
         let urlField = NSTextField()

@@ -52,6 +52,8 @@
 	<string>NSApplication</string>
 	<key>SUFeedURL</key>
 	<string>https://raw.githubusercontent.com/JadenGeller/Helium/master/HeliumUpdatesSparkleFeed.xml</string>
+	<key>LSUIElement</key>
+	<true/>
 	<key>SUPublicDSAKeyFile</key>
 	<string>dsa_pub.pem</string>
 </dict>
